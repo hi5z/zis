@@ -1,9 +1,9 @@
 <?php
 
-$mysql_host = "hpage00.mysql.ukraine.com.ua";
-$mysql_database = "hpage00_pichost";
-$mysql_user = "hpage00_pichost";
-$mysql_password = "ya6na5xs";
+$mysql_host = "localhost"; //MYSQL host
+$mysql_database = "Enter your database name"; //MYSQL database name
+$mysql_user = "Enter your database username"; //MYSQL username
+$mysql_password = "Enter your database password"; //MYSQL password
 
 $link = mysql_connect("$mysql_host", "$mysql_user", "$mysql_password")
         or die("Could not connect : " . mysql_error());
