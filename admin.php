@@ -171,11 +171,13 @@ echo "</table>";
 echo "</div>";
 
 
-// Функция удаляет запись в таблице БД 
+// Функция удаляет запись в таблице БД
+      $tdl = $papka.$postrow[$i]['link'].$postrow[$i]['exten'];
 function delete_item() 
 { 
   $query = "DELETE FROM images WHERE id=".$_GET['id']; 
-  mysql_query ( $query ); 
+  mysql_query ( $query );
+  unlink ($tdl);
   header( 'Location: '.$_SERVER['PHP_SELF'] );
   die();
 } 

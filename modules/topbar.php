@@ -1,24 +1,24 @@
- <?    
- if ($_SERVER['PHP_SELF']!='/topbar.php'){
-@include 'login.php';
+<?
+    if ($_SERVER['PHP_SELF'] != '/topbar.php') {
+        @include 'login.php';
 
 
-   if(@mysql_num_rows($q2)==1){
-   $r2 = @mysql_fetch_array($q2);
-echo '<div style="float:left;">';
-echo '<a class="zagr" href="/">Главная</a>&nbsp;&nbsp;';
-echo '<a class="zagr" href="/user/'.$r2[id].'">Моя страница</a>&nbsp;&nbsp;';
-echo '<a class="zagr" href="#">Мои картинки</a>&nbsp;&nbsp;';
-echo '<a class="zagr" href="#">Рейтинг категорий</a>&nbsp;&nbsp;';
-echo '</div>';
+        if (@mysql_num_rows($q2) == 1) {
+            $r2 = @mysql_fetch_array($q2);
+            echo '<div style="float:left;">';
+            echo '<a class="zagr" href="/">Главная</a>&nbsp;&nbsp;';
+            echo '<a class="zagr" href="/user/' . $r2[id] . '">Моя страница</a>&nbsp;&nbsp;';
+            echo '<a class="zagr" href="#">Мои картинки</a>&nbsp;&nbsp;';
+            echo '<a class="zagr" href="#">Рейтинг категорий</a>&nbsp;&nbsp;';
+            echo '</div>';
 
-echo '<div style="float:right;">';
-echo '<STRONG>Добро пожаловать, '.ucfirst($r2['nick']).'</STRONG>&nbsp;&nbsp;';
-echo '<a class="zagr" href="index.php?exit=1">Выход</a>';
-echo '</div>';
-   
-} else
-echo <<<HTML
+            echo '<div style="float:right;">';
+            echo '<STRONG>Добро пожаловать, ' . ucfirst($r2['nick']) . '</STRONG>&nbsp;&nbsp;';
+            echo '<a class="zagr" href="index.php?exit=1">Выход</a>';
+            echo '</div>';
+
+        } else
+            echo <<<HTML
    <div style="float: left;">
 <a class="zagr" href="/">Главная</a>&nbsp;&nbsp;
 <a class="zagr" href="#">Рейтинг категорий</a>&nbsp;&nbsp;
@@ -34,5 +34,5 @@ echo <<<HTML
 </form>
 </div>
 HTML;
- }
+    }
 ?>

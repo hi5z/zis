@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
  // Переменная хранит число сообщений выводимых на станице
  $num = 5;
  // Определяем общее число сообщений в базе данных
@@ -30,21 +30,23 @@
 
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Страница пользователя - <? echo ucfirst($pageowner); ?></title>
         <link rel="stylesheet" type="text/css" href="/main.css" />
         <style>
 input:hover    { text-decoration: underline; }
 </style>
     </head>
-    <body> 
-     <!-- ADMIN BAR -->
-<table class="bar" width="100%" border="1" style="position:static; top:0px; text-align:right; color: white;">
-    <tr><td height="35px">
-<? include 'topbar.php'; ?>
-    </td></tr>
-</table>
-    <!-- /ADMIN BAR -->
+    <body>
+    <!-- BAR -->
+    <table class="bar" width="100%" border="1" style="position:absolute; top:0px; text-align:right; color: white;">
+        <tr>
+            <td height="35px">
+                <? include 'topbar.php'; ?>
+            </td>
+        </tr>
+    </table>
+    <!-- /BAR -->
         
 
 <h1><a href="/">Логотип</a></h1>
@@ -62,36 +64,39 @@ for($i = 0; $i < $num; $i++)
         {$nickname=$postrow[$i]['uniq_id'];}
         else {$nickname="Аноним";}
         
-        
-        
-        if ((empty($postrow[$i]['category'])))
-        {
-            $category = 'Без категории';
-        }
-        elseif (($postrow[$i]['category'] == 1))
-        {
-            $category = 'Смешное';
-        }
-        elseif (($postrow[$i]['category'] == 2))
-        {
-            $category = 'Животные';
-        }
-        elseif (($postrow[$i]['category'] == 3))
-        {
-            $category = 'Политика';
-        }
-        elseif (($postrow[$i]['category'] == 4))
-        {
-            $category = 'Девушки';
-        }
-        elseif (($postrow[$i]['category'] == 5))
-        {
-            $category = 'Учеба';
-        }
-        elseif (($postrow[$i]['category'] == 6))
-        {
-            $category = 'Страшное';
-        }
+        if ((empty($postrow[$i]['category']))) { $category = 'Без категории'; }
+	else $category=$russian_cat[$postrow[$i]['category']];
+
+// Старый говнокод:
+//
+//        if ((empty($postrow[$i]['category'])))
+//        {
+//            $category = 'Без категории';
+//        }
+//        elseif (($postrow[$i]['category'] == 1))
+//        {
+//            $category = 'Смешное';
+//        }
+//        elseif (($postrow[$i]['category'] == 2))
+//        {
+//            $category = 'Животные';
+//        }
+//        elseif (($postrow[$i]['category'] == 3))
+//        {
+//            $category = 'Политика';
+//        }
+//        elseif (($postrow[$i]['category'] == 4))
+//        {
+//            $category = 'Девушки';
+//        }
+//        elseif (($postrow[$i]['category'] == 5))
+//        {
+//            $category = 'Учеба';
+//        }
+//        elseif (($postrow[$i]['category'] == 6))
+//        {
+//            $category = 'Страшное';
+//        }
 
         
     

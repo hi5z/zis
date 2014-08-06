@@ -2,96 +2,74 @@
 @include 'config.php';
 @include 'language/ru.php';
 ?>
-
+<!-- КАРКАС -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
-
 <head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<!-- <meta http-equiv="Cache-Control" content="public" />
-<meta http-equiv="Cache-Control" content="max-age=1209600" /> -->
-<title><? echo TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="/main.css" />
-<link rel="shortcut icon" href="/icon.ico" type="image/x-icon" />
+    <title><? echo TITLE; ?></title>
 
-
-<style type="text/css">
-/*<![CDATA[*/
- div.c4 {display:none;} 
- div.c1 {text-align: center;}
- table.c1 {text-align: center; width: 770px;}
- #lastpic {display:none; text-align: center; overflow: hidden; position: absolute;}
- #taggs {display:none; text-align: center;}
-/*]]>*/
-</style>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="/main.css" />
+        <meta name="description" content="Абсолютно бесплатный и минималистычный хостинг в UA-IX"/>
+        <meta name="keywords" content="хостинг картинок,хостинг изображений,хостинг фото,celebs,зображення,scans,фотохостинг,картинки,фото,image hosting,хостинг,ua,гф-шч,ua-ix,jcnbyu,photos,images,ukraine,скани,сканы"/>
 </head>
 
 <body>
     <!-- BAR -->
-<table class="bar" width="100%" border="1" style="position:static; top:0px; text-align:right; color: white;">
-    <tr><td height="35px">
-<? include 'topbar.php'; ?>
-    </td></tr>
-</table>
+    <table class="bar" width="100%" border="1" style="position:fixed; top:0px; text-align:right; color: white;">
+        <tr>
+            <td height="35px">
+            <? include 'topbar.php'; ?>
+            </td>
+        </tr>
+    </table>
     <!-- /BAR -->
 
+    
 <div class="in">
 <h1><a href="/">Логотип</a></h1>
-<!-- <th><h1><a href="/index.php">Логотип</a></h1></th> -->
 
 
     
     
 
    
-   <?php
+<?php
 
- define ("MAX_SIZE", $razmer);
+ define ("MAX_SIZE", $razmer); 
+ function getExtension($str) {$i = strrpos($str,".");if (!$i) { return ""; }$l = strlen($str) - $i;$ext = substr($str,$i+1,$l);return $ext;}
 
- function getExtension($str) {
-         $i = strrpos($str,".");
-         if (!$i) { return ""; }
-         $l = strlen($str) - $i;
-         $ext = substr($str,$i+1,$l);
-         return $ext;
- }
- $errors=0;
-
- if(isset($_POST['Submit']))
- {
+    if(isset($_POST['Submit'])) //Если была нажата кнопка Загрузка
+    {	
+            $image = $_FILES['image']['name']; //Узнаем имя файла
  	
- 	$image=$_FILES['image']['name'];
- 	
- 	if ($image)
- 	{
+            if ($image)
+            {
 
- 		$filename = stripslashes($_FILES['image']['name']);
-                
+ 		$filename = stripslashes($_FILES['image']['name']);                
   		$extension = getExtension($filename);
  		$extension = strtolower($extension);
 
- if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif"))
- 		{
+    if (($extension != "jpg") && ($extension != "jpeg") && ($extension != "png") && ($extension != "gif")) //Если расширение файла не подходит под свойства картинки - пишем ошибку
+                {
 
- 			echo '<h2>К сожалению вы пытаетесь загрузить не картинку. :)</h2>';
- 			$errors=1;
+ 			echo '<h2>К сожалению вы пытаетесь загрузить не картинку.</h2>';
  		}
  		else
  		{
 
- $size=filesize($_FILES['image']['tmp_name']);
+$size=filesize($_FILES['image']['tmp_name']); //Узнаем размер файла
 
-if ($size > MAX_SIZE*1024)
-{
-	echo '<h1>Великоват файл! Лучше бы уменьшить его, потому что мы еще не можем автоматически изменять размер файла. ^_^</h1>';
-	$errors=1;
-}
+    if ($size > MAX_SIZE*1024) //Если файл больше указанного размера - пишем ошибку
+        {
+        	echo '<h1>Великоват файл! Лучше бы уменьшить его, потому что мы еще не можем автоматически изменять размер файла. ^_^</h1>';
+        	$errors=1;
+        }
 
+//Разные имена файла для разных модулей
 $image_name=time().'.'.$extension;
 $image_name_ne=time();
-
 $newname=$papka.$image_name;
 
 
@@ -99,9 +77,10 @@ $newname=$papka.$image_name;
 $copied = copy($_FILES['image']['tmp_name'], $newname);
 
   
-
+//Проверка плагинов
 @include_once 'plugins/checkbox_check.php';
 @include_once 'plugins/translit.php';
+//Конец
 
 
 
@@ -131,34 +110,32 @@ if ($result = mysql_fetch_array($query9)) {
  unlink($newname);
  
 } 
-else {
+else    {
     
 
     
- if(isset($_POST['Submit']) && !$errors)
- {
+        if(isset($_POST['Submit']) && !$errors)
+            {
      
-list($width, $height) = GetImageSize("$newname");
-$razmer = $width.'x'.$height;
-$uniid=$r2['nick'];
- 	//echo 'Системные настройки.';
-        //echo $checksum;
-        //echo '<div align="center"><a target="_blank" href="'.$url.''.$newname.'"><img width="80%" src="'.$url.''.$newname.'" alt="Ваша картинка" /></a></div>';
- 	//echo '<br /><div align="center"><textarea rows="1" cols="60">'.$url.''.$newname.'</textarea></div>';
-        //echo '<br /><div align="center"><textarea rows="2" cols="60"><a href="'.$url.''.$newname.'"><img src="'.$url.''.$newname.'" /></a></textarea></div>';
+                list($width, $height) = GetImageSize("$newname");
+                
+                // Размер загруженного файла //
+                $razmer = $width.'x'.$height;
+                $uniid=$r2['nick'];
 
             /* Выполняем SQL-запрос */
 
-    $query = "INSERT INTO images (link, name, exten, ip, checksum, data, p, razmer, uniq_id, category) VALUES ('$image_name_ne', '$filename', '$extension', '$ip', '$checksum', '$date', '$p', '$razmer', '$uniid', '$category')";
-    $result = @mysql_query($query) or die("Query failed : " . mysql_error());
-    echo '<meta http-equiv="refresh" content="1; url=/'.$image_name_ne.'">';
+                $query = "INSERT INTO images (link, name, exten, ip, checksum, data, p, razmer, uniq_id, category) VALUES ('$image_name_ne', '$filename', '$extension', '$ip', '$checksum', '$date', '$p', '$razmer', '$uniid', '$category')";
+                $result = @mysql_query($query) or die("Query failed : " . mysql_error());
+                echo '<meta http-equiv="refresh" content="1; url=/'.$image_name_ne.'">';
+@include_once 'plugins/resize.php';
 
     
 
- }
+            }
  
- }
-}
+        }
+                    }
 
  
     /* Закрываем соединение */
@@ -216,12 +193,6 @@ $uniid=$r2['nick'];
 
 </table>
 </form>
-
-<div id="taggs">
-    <form method="post" enctype="multipart/form-data" action="">
-<input type='text' class='yarlik' />&nbsp;&nbsp;<input type='text' class='yarlik' />&nbsp;&nbsp;<input type='text' class='yarlik' />
-    </form>
-</div>
 
 
 
