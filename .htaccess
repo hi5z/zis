@@ -1,4 +1,5 @@
 RewriteEngine On
+    RewriteRule ^([a-zA-Z_]+)$ /$1.php
     RewriteRule ^([a-zA-Z0-9_-]+)$ show.php?a=$1
     RewriteRule ^([a-zA-Z0-9_-]+)/$ show.php?a=$1
     RewriteRule ^(.*)user/(.*)$ $1/show.php?user=$2

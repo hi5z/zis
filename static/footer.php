@@ -1,7 +1,7 @@
 <?
-echo <<<FOOTER
+    echo <<<FOOTER
 <div class="c1">
-<a target="_blank" href="http://blog.zis.org.ua/" title="Блог разработчика">imgZIS 1.1 © 2012</a>
+<a target="_blank" href="http://mew.su/" title="Блог разработчика">imgZIS 1.1 by Meow © 2014</a>
  </div>
 
 <div class="c1">

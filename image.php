@@ -1,22 +1,11 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ru" xml:lang="ru">
-
 <head>
-    <?
-
-
-$aroww = mysql_query("SELECT views FROM images WHERE link='$a'") or
-die(mysql_error());
-
-
+<?
+$aroww = mysql_query("SELECT views FROM images WHERE link='$a'") or die(mysql_error());
 $arow = mysql_fetch_array($aroww);
 $views = $arow[views]+1;
-
-
 mysql_query("UPDATE images SET views = '$views' WHERE link='$a'");
-
 
 /////////////////////////////////////////////////////
 $query01=mysql_query("SELECT * FROM images WHERE link = '$a'");
@@ -27,8 +16,8 @@ $ktozalil = $row01[uniq_id];
 /////////////////////////////////////////////////////
 
 if ($checkp != '0')
-    {
-echo '<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">';
+{
+	echo '<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">';
 }
 ?>
     
@@ -37,18 +26,13 @@ echo '<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">';
 <link rel="stylesheet" type="text/css" href="/main.css" />
 <link rel="shortcut icon" href="/icon.ico" type="image/x-icon" />
 
-
 <script src="http://userapi.com/js/api/openapi.js" type="text/javascript" charset="utf-8"></script>
-
 <script type="text/javascript" language="JavaScript">
 //<![CDATA[
-
-        function highlight(field) {
-
+function highlight(field)
+{
         field.focus();
-
         field.select();
-
 }
 //]]>
 </script>
@@ -56,8 +40,8 @@ echo '<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">';
 <script type="text/javascript">
 //<![CDATA[
   window.___gcfg = {lang: 'ru'};
-
-  (function() {
+  (function()
+  {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
     po.src = 'https://apis.google.com/js/plusone.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
@@ -79,40 +63,31 @@ echo '<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">';
 </head>
 
 <body>
-    
 <!-- BAR -->
-<table class="bar" width="100%" border="1" style="position:static; top:0px; text-align:right; color: white;">
-    <tr><td height="35px">
- <?
-@include 'topbar.php'; ?>
-    </td></tr>
+<table class="bar" width="100%" border="1" style="position:fixed; top:0px; text-align:right; color: white;">
+<tr><td height="35px">
+<? @include 'topbar.php'; ?>
+</td></tr>
 </table>
-    <!-- /BAR -->    
-    
+<!-- /BAR -->    
 <h1><a href="/">Логотип</a></h1>
-
-
 <table class="c3" border="0">
-   <tr>
-       <td>&nbsp;</td>
-   </tr>
-   
-   
-   <tr>
-       <td class="c1">
-                <a target="_blank" href="<? echo $url.$papka.$a.'.'.$b ?>">
-                    <img width="70%" src="<? echo $url.$papka.$a.'.'.$b ?>" alt="Ваша картинка" />
-                </a>
+<tr>
+<td>&nbsp;</td>
+</tr>
+<tr>
+	<td class="c1">
+        <a target="_blank" href="<? echo $url.$papka.$a.'.'.$b ?>">
+        <img width="70%" src="<? echo $url.$papka.$a.'.'.$b ?>" alt="Ваша картинка" />
+        </a>
        </td>
-   </tr>
-   
-   <tr>
-       <td>&nbsp;</td>
-   </tr>
-    
-    <tr>
-       <td><div class="c1">
-      <? 
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td><div class="c1">
+	<? 
            if ($ktozalil!=NULL){
             echo 'Загрузил: <STRONG>'.$ktozalil.'</STRONG>&nbsp;&nbsp;';
            } else {
@@ -120,19 +95,16 @@ echo '<META NAME="ROBOTS" CONTENT="NOINDEX,NOFOLLOW">';
            }
            echo 'Просмотров: <STRONG>'.$views.'</STRONG>&nbsp;&nbsp;';
            echo 'Разрешение картинки: <STRONG>'.$d.'</STRONG>&nbsp;&nbsp;';
-           
-           ?>
-           </div></td>
-   </tr>
-    
-    <tr>
-       <td>&nbsp;</td>
-   </tr>
-    <tr>
-        <td>
-            <div class="c1">
-
-<div class="c1"><a href="https://twitter.com/share" class="twitter-share-button c2">Твитнуть</a> <script type="text/javascript">
+        ?>
+	</div></td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+</tr>
+<tr>
+	<td>
+	<div class="c1">
+	<div class="c1"><a href="https://twitter.com/share" class="twitter-share-button c2">Твитнуть</a> <script type="text/javascript">
 //<![CDATA[
 !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 //]]>
